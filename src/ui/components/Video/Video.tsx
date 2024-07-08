@@ -1,4 +1,5 @@
 import { IVideo } from "../../../lib/interfaces";
+import { formatTime } from "../../../lib/utils";
 
 interface IProps {
   video: IVideo;
@@ -11,7 +12,7 @@ export function Video({ video, onClick }: IProps) {
   return (
     <li onClick={() => onClick(video)}>
       <img src={cover} alt={title} />
-      <span>{duration}</span>
+      <span>{formatTime(duration)}</span>
       <h2>{title}</h2>
     </li>
   );
