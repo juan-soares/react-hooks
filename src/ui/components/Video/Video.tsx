@@ -1,13 +1,8 @@
-interface IVideo {
-  title: string;
-  duration: number;
-  url: string;
-  cover: string;
-}
+import { IVideo } from "../../../lib/interfaces";
 
 interface IProps {
   video: IVideo;
-  onClick: (video: {}) => {};
+  onClick: (video: IVideo) => void;
 }
 
 export function Video({ video, onClick }: IProps) {
