@@ -18,5 +18,10 @@ export interface IVideoAction {
 
 export interface IVideoReducer {
   state: IVideoState;
-  action: { type: "add" | "select"; value: IVideo };
+  action: IVideoAction;
+}
+
+export interface IVideoContext {
+  state: IVideoState;
+  dispatch: React.Dispatch<IVideoAction>;
 }

@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import style from "./NewVideoForm.module.css";
 import { IVideo } from "../../../lib/interfaces";
+import { VideoStoreContext } from "../../../lib/contexts";
 
 export function NewVideoForm() {
+  const { dispatch } = useContext(VideoStoreContext);
   const [newVideo, setNewVideo] = useState<IVideo>({
     id: "",
     title: "",
@@ -10,6 +12,10 @@ export function NewVideoForm() {
     url: "",
     cover: "",
   });
+
+  const saveVideo = () => {
+    dispatch({ type: "add", value: newVideo });
+  };
 
   const resetFields = () => {
     setNewVideo({
@@ -23,6 +29,7 @@ export function NewVideoForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    saveVideo();
     resetFields();
   };
 

@@ -1,15 +1,12 @@
 import { createContext, useReducer } from "react";
+import { IVideoContext } from "../interfaces";
 import { videoInitialState, videoReducer } from "../reducers";
-import { IVideoAction, IVideoState } from "../interfaces";
 
 interface IProps {
   children: JSX.Element[];
 }
 
-export const VideoStoreContext = createContext<{
-  state: IVideoState;
-  dispatch: React.Dispatch<IVideoAction>;
-}>({
+export const VideoStoreContext = createContext<IVideoContext>({
   state: videoInitialState,
   dispatch: () => {},
 });
