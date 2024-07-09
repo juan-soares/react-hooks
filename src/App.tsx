@@ -5,7 +5,9 @@ export default function App() {
   return (
     <div>
       <NewVideoForm />
-      <VideoPlayer />
+      <VideoPlayer
+        selectedVideo={{ cover: "", duration: 0, id: "", title: "", url: "" }}
+      />
       <VideoList />
     </div>
   );
