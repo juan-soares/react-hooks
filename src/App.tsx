@@ -7,9 +7,7 @@ export default function App() {
     <div>
       <VideoContextProvider>
         <NewVideoForm />
-        <VideoPlayer
-          selectedVideo={{ cover: "", duration: 0, id: "", title: "", url: "" }}
-        />
+        <VideoPlayer />
         <VideoList />
       </VideoContextProvider>
     </div>

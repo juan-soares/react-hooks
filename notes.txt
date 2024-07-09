@@ -1,0 +1,4 @@
+State: Armazena os estados globais.
+Dispatch: Armazena as funcoes que atualizam os estados,
+Store: Armazena o State e o Dispatch.
+Context: Armazena o contexto para ser consumido por toda a aplicação, no caso a Store.

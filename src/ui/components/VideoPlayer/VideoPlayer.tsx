@@ -1,14 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import style from "./VideoPlayer.module.css";
-import { IVideo } from "../../../lib/interfaces";
+import { VideoContext } from "../../../lib/contexts";
 import { formatTime } from "../../../lib/utils";
 
-interface IProps {
-  selectedVideo: IVideo;
-}
-
-export function VideoPlayer({ selectedVideo }: IProps) {
-  const { url, duration, title } = selectedVideo;
+export function VideoPlayer() {
+  const {
+    selectedVideo: { url, duration, title },
+  } = useContext(VideoContext);
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);

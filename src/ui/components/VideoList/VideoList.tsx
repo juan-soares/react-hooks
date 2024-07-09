@@ -1,16 +1,23 @@
+import { useContext } from "react";
 import style from "./VideoList.module.css";
 import { IVideo } from "../../../lib/interfaces";
+import { VideoStoreContext } from "../../../lib/contexts";
 import { Video } from "../Video";
 
-const list: IVideo[] = [];
-
 export function VideoList() {
-  function onClick(video: IVideo) {}
+  const {
+    state: { videoList },
+    dispatch,
+  } = useContext(VideoStoreContext);
+
+  function onClick(selectedVideo: IVideo) {
+    dispatch({ type: "add", value: selectedVideo });
+  }
 
   return (
     <ul className={style.list}>
-      {list.map((listItem) => (
-        <Video key={listItem.id} video={listItem} onClick={onClick} />
+      {videoList.map((video) => (
+        <Video key={video.id} video={video} onClick={onClick} />
       ))}
     </ul>
   );

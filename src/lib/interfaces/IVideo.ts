@@ -5,3 +5,18 @@ export interface IVideo {
   url: string;
   cover: string;
 }
+
+export interface IVideoState {
+  videoList: IVideo[];
+  selectedVideo: IVideo | null;
+}
+
+export interface IVideoAction {
+  type: "add" | "select";
+  value: IVideo;
+}
+
+export interface IVideoReducer {
+  state: IVideoState;
+  action: { type: "add" | "select"; value: IVideo };
+}
