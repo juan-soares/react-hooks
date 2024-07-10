@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import style from "./VideoPlayer.module.css";
 import { VideoStoreContext } from "../../../lib/contexts";
 import { formatTime } from "../../../lib/utils";
@@ -9,11 +9,12 @@ export function VideoPlayer() {
   } = useContext(VideoStoreContext);
 
   if (!selectedVideo) return;
-
+  const { duration, url, title } = selectedVideo;
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
   const progressTimer = useRef();
+  const totalTime = useMemo(() => formatTime(duration), [selectedVideo]);
 
   function playVideo() {
     videoRef.current.play();
@@ -65,9 +66,7 @@ export function VideoPlayer() {
             <button onClick={isPlaying ? pauseVideo : playVideo}>
               {isPlaying ? "||" : ">"}
             </button>
-            <span>{`${formatTime(Math.round(progress))} / ${formatTime(
-              duration
-            )}`}</span>
+            <span>{`${formatTime(Math.round(progress))} / ${totalTime}`}</span>
             <input
               type="range"
               value={progress}
