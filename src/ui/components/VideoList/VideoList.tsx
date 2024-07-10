@@ -11,13 +11,13 @@ export function VideoList() {
   } = useContext(VideoStoreContext);
 
   function onClick(selectedVideo: IVideo) {
-    dispatch({ type: "add", value: selectedVideo });
+    dispatch({ type: "select", value: selectedVideo });
   }
 
   return (
     <ul className={style.list}>
       {videoList.map((video) => (
-        <Video key={video.id} video={video} onClick={onClick} />
+        <Video key={video.url} video={video} onClick={onClick} />
       ))}
     </ul>
   );

@@ -1,10 +1,10 @@
 import { IVideoAction, IVideoState } from "../interfaces";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-const { localValue, updateValue } = useLocalStorage("videoList", []);
+const { get, set } = useLocalStorage("videoList", []);
 
 export const videoInitialState: IVideoState = {
-  videoList: localValue,
+  videoList: get(),
   selectedVideo: null,
 };
 
@@ -15,7 +15,7 @@ export function videoReducer(
   switch (action.type) {
     case "add":
       const updatedVideoList = [...state.videoList, action.value];
-      updateValue(updatedVideoList);
+      set(updatedVideoList);
       return { ...state, videoList: updatedVideoList };
     case "select":
       return { ...state, selectedVideo: action.value };
