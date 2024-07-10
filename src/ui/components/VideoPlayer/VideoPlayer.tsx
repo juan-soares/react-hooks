@@ -1,12 +1,15 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import style from "./VideoPlayer.module.css";
-import { VideoContext } from "../../../lib/contexts";
+import { VideoStoreContext } from "../../../lib/contexts";
 import { formatTime } from "../../../lib/utils";
 
 export function VideoPlayer() {
   const {
-    selectedVideo: { url, duration, title },
-  } = useContext(VideoContext);
+    state: { selectedVideo },
+  } = useContext(VideoStoreContext);
+
+  if (!selectedVideo) return;
+
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [progress, setProgress] = useState(0);
